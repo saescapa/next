@@ -179,10 +179,5 @@ app.get('/query_holiday/', function(req, res) {
 app.use('/', express.static(__dirname + "/public/"));
 
 app.listen(process.env.PORT || 5000, function() {
-  request({
-      url:  "http://localhost:5000/query_holiday/",
-      method: "GET",
-      json: true
-  });
   console.log('Next is running on port', process.env.PORT || 8080);
 });
