@@ -1,0 +1,45 @@
+[{
+  "holiday": "New Years Day",
+  "date-month": "January",
+  "date-day": "01"
+},{
+  "holiday": "Martin Luther King Day",
+  "date-month": "January",
+  "date-day": "16"
+},{
+  "holiday": "Presidents' Day",
+  "date-month": "February",
+  "date-day": "20"
+},{
+  "holiday": "Mothers' Day",
+  "date-month": "May",
+  "date-day": "14"
+},{
+  "holiday": "Memorial Day",
+  "date-month": "May",
+  "date-day": "29"
+},{
+  "holiday": "Fathers' Day",
+  "date-month": "June",
+  "date-day": "18"
+},{
+  "holiday": "Independence Day",
+  "date-month": "July",
+  "date-day": "04"
+},{
+  "holiday": "Columbus Day",
+  "date-month": "October",
+  "date-day": "09"
+},{
+  "holiday": "Veterans Day",
+  "date-month": "November",
+  "date-day": "10"
+},{
+  "holiday": "Thanksgiving",
+  "date-month": "November",
+  "date-day": "23"
+},{
+  "holiday": "Christmas Day",
+  "date-month": "December",
+  "date-day": "25"
+}]
