@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.1em;
+    color: #2773B1;
+}
+
+body{
+  background: #0A2032;  
+  display: flex;
+  justify-content: center;  
+}
+
+
+.container{
+  position:absolute;
+  top:40%;
+  max-width:800px;
+  
+}
+label{
+    position:absolute;
+    top:5px;
+    left:10px;
+    transition: all 0.25s ease;
+    color: rgba(39,115,177, 0.5);
+    z-index: -1;
+    user-select:none;
+}
+
+label.active{
+    transform: translate(-5px,-50px);
+    font-size:1.25em;
+    color: floralwhite;
+}
+input[type="text"]{
+    background:transparent;
+    padding:5px 10px;
+    border:none;
+    border: 2px solid #a0b3b0;
+    border-radius: 5px;
+    color: floralwhite;
+    transition: all .25s ease;
+}
+
+input[type="text"]:focus{
+    box-shadow: 0 0 20px black;
+    border-color: #2773B1;
+    outline:none;
+}
+
+input[type="submit"]{
+    background:transparent;
+    border:none;
+    outline: none;
+    font-size:1.3em;
+}
+
+.results{
+    position: absolute;
+    top:100px;
+}
+h1{
+    font-size: 1.5em;
+}
+h2{
+   font-size: 1em; 
+}
+a{
+    font-size: 1em;
+}
