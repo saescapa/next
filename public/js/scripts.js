@@ -11,6 +11,15 @@ var sampledata = {}
 var service;
 var gdistance;
 var label = document.getElementById('nextLabel');
+
+query.addEventListener('keyup',function(e){
+  if(this.value === ''){
+      label.classList.remove('active');
+      return emptyResults();
+  }
+  label.classList.add('active');
+});
+
 query.addEventListener('blur', function (e) {
     //console.log(e);
     if (this.value === '') {
@@ -32,6 +41,17 @@ function getLocation() {
     }
 }
 
+var sanjose = document.getElementsByClassName("sj")[0];
+var sanfrancisco = document.getElementsByClassName("sf")[0];
+
+sanjose.addEventListener('click', function (e) {
+    initMap("San Jose");
+});
+
+sanfrancisco.addEventListener('click', function (e) {
+    initMap("San Francisco");
+});
+
 function setPosition(position) {
     data.location.lat = position.coords.latitude;
     data.location.lng = position.coords.longitude;
@@ -41,7 +61,17 @@ function setPosition(position) {
 function processForm(e) {
     if (e.preventDefault) e.preventDefault();
     if (query.value.search('train') != -1 || query.value.search('bart') != -1) {
-        initMap();
+      console.log("asdasd");
+        $(".box").show();
+        var sanfran = document.createElement('div');
+        sanfran.classList.add("box");
+        sanfran.innerHTML= "San Francisco";
+        var sanjos = document.createElement('div');
+        sanjos.classList.add("box");
+        sanjos.innerHTML= "San Jose";
+        resultBox.appendChild(sanfran);
+        resultBox.appendChild(sanjos);
+        // initMap();
         console.log('query train api');
     }
     else {
@@ -95,6 +125,7 @@ function initTM() {
 }
 
 function emptyResults() {
+  $(".box").hide();
     while (resultBox.hasChildNodes()) {
         resultBox.removeChild(resultBox.lastChild);
     }
@@ -107,14 +138,20 @@ function initHack() {
 }
 
 function displayHack(results) {
+    console.log(results);
     emptyResults();
+    var websiteH = document.createElement('h1');
     var website = document.createElement('a');
     var location = document.createElement('h3');
-    website.innerHTML = results.name;
-    website.href = results.website;
-    location.innerHTML = results.location;
+    var date = document.createElement('h3');
+    websiteH.innerHTML = results.data.name;
+    website.href = results.data.website;
+    date.innerHTML = results.data.time;
+    location.innerHTML = results.data.location;
+    website.appendChild(websiteH);
     resultBox.appendChild(website);
     resultBox.appendChild(location);
+    resultBox.appendChild(date);
 }
 
 function initHoliday(){
@@ -127,8 +164,9 @@ function displayHoliday(results){
     emptyResults();
     var holiday = document.createElement('h1');
     var hdate = document.createElement('h2');
-    holiday.innerHTML = results.holiday;
-    hdate.innerHTML = results.date-month+' '+results.date-day;
+    holiday.innerHTML = results.data.holiday;
+    var month = ["January","February","March","April","May","June","July","August","September","October","December"];
+    hdate.innerHTML = month[results.data.date_month]+' '+results.data.date_day;
     resultBox.appendChild(holiday);
     resultBox.appendChild(hdate);
 }
@@ -157,9 +195,9 @@ function displayConcert(results) {
     //console.log(results._embedded.events[0]._embedded.venues[0].state.name);
 }
 
-function initMap() {
+function initMap(destination) {
     var directionsService = new google.maps.DirectionsService;
-    calculateAndDisplayRoute(directionsService);
+    calculateAndDisplayRoute(directionsService,destination);
 }
 
 function initPlaces() {
@@ -173,10 +211,10 @@ function initPlaces() {
     placesService.nearbySearch(request, callback);
 }
 
-function calculateAndDisplayRoute(directionsService) {
+function calculateAndDisplayRoute(directionsService,userDestination) {
     directionsService.route({
         origin: data.location
-        , destination: 'San Jose'
+        , destination: userDestination
         , travelMode: 'TRANSIT'
         , transitOptions: {
             modes: ['TRAIN']
